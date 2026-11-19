@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <!-- Etiqueta esencial para que el diseño se adapte a celulares, tablets y computadoras -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automotriz Mimi | Taller Mecánico Integral</title>
+
+    <!-- Fuente tipográfica 'Inter' desde Google Fonts para una lectura clara y moderna -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================================================
+           1. VARIABLES CSS (:root)
+           Permiten cambiar toda la paleta de colores del sitio modificando un solo lugar.
+           ========================================================================== */
+        :root {
+            --color-primario: #1e293b;      /* Azul oscuro pizarra para encabezados */
+            --color-acento: #ea580c;        /* Naranja mecánico para botones y detalles */
+            --color-acento-oscuro: #c2410c; /* Tono al pasar el cursor sobre botones */
+            --color-fondo: #f8fafc;         /* Gris muy claro para el fondo general */
+            --color-tarjeta: #ffffff;       /* Blanco puro para tarjetas */
+            --color-texto: #334155;         /* Gris oscuro para textos principales */
+            --color-texto-suave: #64748b;   /* Gris medio para descripciones */
+            --radio-borde: 12px;            /* Bordes redondeados consistentes */
+        }
+
+        /* ==========================================================================
+           2. RESET Y ESTILOS BASE
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Activa el desplazamiento suave al hacer clic en los enlaces del menú */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            line-height: 1.6;
+        }
+
+        /* Contenedor centrado con ancho máximo para mantener orden visual */
+        .contenedor {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* ==========================================================================
+           3. ENCABEZADO Y BARRA DE NAVEGACIÓN (<header> y <nav>)
+           ========================================================================== */
+        header {
+            background-color: var(--color-primario);
+            color: #ffffff;
+            padding: 1rem 0;
+            position: sticky; /* Mantiene el menú fijo en la parte superior */
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .barra-navegacion {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .marca {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .marca span {
+            color: var(--color-acento);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--color-acento);
+        }
+
+        /* ==========================================================================
+           4. SECCIÓN DE PRESENTACIÓN (HERO)
+           ========================================================================== */
+        .hero {
+            background: linear-gradient(rgba(30, 41, 59, 0.85), rgba(30, 41, 59, 0.92)),
+                        url('https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+            color: #ffffff;
+            text-align: center;
+            padding: 5.5rem 1rem;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            max-width: 650px;
+            margin: 0 auto 2rem auto;
+            color: #cbd5e1;
+        }
+
+        /* Botón principal reutilizable */
+        .boton {
+            display: inline-block;
+            background-color: var(--color-acento);
+            color: #ffffff;
+            padding: 0.9rem 2rem;
+            border-radius: var(--radio-borde);
+            text-decoration: none;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .boton:hover {
+            background-color: var(--color-acento-oscuro);
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================================================
+           5. ESTRUCTURA COMÚN DE SECCIONES
+           ========================================================================== */
+        section {
+            padding: 4.5rem 0;
+        }
+
+        .encabezado-seccion {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .encabezado-seccion h2 {
+            font-size: 2rem;
+            color: var(--color-primario);
+            margin-bottom: 0.5rem;
+        }
+
+        .encabezado-seccion p {
+            color: var(--color-texto-suave);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ==========================================================================
+           6. SECCIÓN DE SERVICIOS (CSS GRID RESPONSIVO)
+           ========================================================================== */
+        .seccion-blanca {
+            background-color: var(--color-tarjeta);
+        }
+
+        .grid-servicios {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tarjeta-servicio {
+            background-color: var(--color-fondo);
+            padding: 2rem;
+            border-radius: var(--radio-borde);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease;
+        }
+
+        .tarjeta-servicio:hover {
+            transform: translateY(-4px);
+        }
+
+        .icono {
+            font-size: 2.2rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .tarjeta-servicio h3 {
+            color: var(--color-primario);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .tarjeta-servicio p {
+            color: var(--color-texto-suave);
+            font-size: 0.95rem;
+        }
+
+        /* ==========================================================================
+           7. SECCIÓN CONOCE A NUESTRO EQUIPO (CSS GRID + RETRATOS HUMANOS)
+           ========================================================================== */
+        .grid-equipo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+        }
+
+        .tarjeta-equipo {
+            background-color: var(--color-tarjeta);
+            border-radius: var(--radio-borde);
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tarjeta-equipo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Ajuste clave para retratos: llena el espacio sin deformar y centra el rostro */
+        .tarjeta-equipo img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            object-position: top center;
+            background-color: #e2e8f0;
+        }
+
+        .detalle-miembro {
+            padding: 1.5rem;
+        }
+
+        .detalle-miembro h3 {
+            color: var(--color-primario);
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .cargo {
+            display: inline-block;
+            color: var(--color-acento);
+            font-weight: 700;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.75rem;
+        }
+
+        .detalle-miembro p {
+            color: var(--color-texto-suave);
+            font-size: 0.93rem;
+        }
+
+        /* ==========================================================================
+           8. SECCIÓN DE CONTACTO
+           ========================================================================== */
+        .caja-contacto {
+            background-color: var(--color-fondo);
+            border: 1px solid #e2e8f0;
+            border-radius: var(--radio-borde);
+            padding: 2.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .dato-contacto h3 {
+            color: var(--color-primario);
+            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .dato-contacto p {
+            color: var(--color-texto-suave);
+            font-size: 0.95rem;
+        }
+
+        /* Mensaje visual de confirmación sin usar alert() */
+        .aviso-cita {
+            display: none;
+            margin-top: 1rem;
+            padding: 0.85rem 1rem;
+            background-color: #dcfce7;
+            color: #166534;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* ==========================================================================
+           9. PIE DE PÁGINA (<footer>)
+           ========================================================================== */
+        footer {
+            background-color: var(--color-primario);
+            color: #cbd5e1;
+            text-align: center;
+            padding: 2rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        footer strong {
+            color: #ffffff;
+        }
+
+        /* ==========================================================================
+           10. AJUSTES PARA PANTALLAS PEQUEÑAS (MÓVILES)
+           ========================================================================== */
+        @media (max-width: 600px) {
+            .barra-navegacion {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ======================================================================
+         1. ENCABEZADO Y NAVEGACIÓN
+         ====================================================================== -->
+    <header>
+        <div class="contenedor barra-navegacion">
+            <a href="#inicio" class="marca">🔧 Automotriz <span>Mimi</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#equipo">Nuestro Equipo</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ======================================================================
+         2. SECCIÓN DE PRESENTACIÓN (HERO)
+         ====================================================================== -->
+    <section id="inicio" class="hero">
+        <div class="contenedor">
+            <h1>Automotriz Mimi</h1>
+            <p>Cuidamos tu vehículo con honestidad, repuestos de calidad y diagnóstico preciso para que conduzcas siempre seguro.</p>
+            <a href="#contacto" class="boton">Agendar Cita Ahora</a>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         3. SECCIÓN DE SERVICIOS
+         ====================================================================== -->
+    <section id="servicios" class="seccion-blanca">
+        <div class="contenedor">
+            <div class="encabezado-seccion">
+                <h2>Nuestros Servicios</h2>
+                <p>Soluciones mecánicas completas para mantener tu automóvil en óptimas condiciones.</p>
+            </div>
+
+            <div class="grid-servicios">
+                <!-- Servicio 1 -->
+                <article class="tarjeta-servicio">
+                    <span class="icono">🛢️</span>
+                    <h3>Mantenimiento Preventivo</h3>
+                    <p>Cambio de aceite sintético, filtros de aire y combustible, bujías y revisión general de seguridad.</p>
+                </article>
+
+                <!-- Servicio 2 -->
+                <article class="tarjeta-servicio">
+                    <span class="icono">🛑</span>
+                    <h3>Frenos y Suspensión</h3>
+                    <p>Reemplazo de pastillas y discos de freno, amortiguadores, rótulas y alineación computarizada.</p>
+                </article>
+
+                <!-- Servicio 3 -->
+                <article class="tarjeta-servicio">
+                    <span class="icono">💻</span>
+                    <h3>Diagnóstico Computarizado</h3>
+                    <p>Lectura de códigos de falla mediante escáner automotriz, revisión de sensores, batería y alternador.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         4. SECCIÓN CONOCE A NUESTRO EQUIPO
+         ====================================================================== -->
+    <section id="equipo">
+        <div class="contenedor">
+            <div class="encabezado-seccion">
+                <h2>Conoce a Nuestro Equipo</h2>
+                <p>Personas reales, preparadas y comprometidas con el buen funcionamiento de tu auto.</p>
+            </div>
+
+            <div class="grid-equipo">
+                <!-- Integrante 1: Fundador -->
+                <article class="tarjeta-equipo">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=faces"
+                         alt="Miguel Ángel Morales - Fundador y Maestro Mecánico"
+                         onerror="this.src='https://placehold.co/400x400/1e293b/ffffff?text=MM'">
+                    <div class="detalle-miembro">
+                        <h3>Miguel Ángel Morales</h3>
+                        <span class="cargo">Fundador y Maestro Mecánico</span>
+                        <p>Lidera el taller con más de 20 años de experiencia, supervisa reparaciones mayores de motor y garantiza la calidad de cada entrega.</p>
+                    </div>
+                </article>
+
+                <!-- Integrante 2: Carlos Méndez -->
+                <article class="tarjeta-equipo">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=faces"
+                         alt="Carlos Méndez - Especialista en Diagnóstico y Electrónica"
+                         onerror="this.src='https://placehold.co/400x400/1e293b/ffffff?text=CM'">
+                    <div class="detalle-miembro">
+                        <h3>Carlos Méndez</h3>
+                        <span class="cargo">Especialista en Diagnóstico y Electrónica</span>
+                        <p>Opera los equipos de escáner computarizado, soluciona fallas eléctricas y optimiza el rendimiento electrónico del motor.</p>
+                    </div>
+                </article>
+
+                <!-- Integrante 3: Sofía Navarro -->
+                <article class="tarjeta-equipo">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&crop=faces"
+                         alt="Sofía Navarro - Jefa de Servicio al Cliente y Presupuestos"
+                         onerror="this.src='https://placehold.co/400x400/1e293b/ffffff?text=SN'">
+                    <div class="detalle-miembro">
+                        <h3>Sofía Navarro</h3>
+                        <span class="cargo">Jefa de Servicio al Cliente y Presupuestos</span>
+                        <p>Recibe a cada cliente, explica de forma clara y honesta los presupuestos y coordina los tiempos de entrega del taller.</p>
+                    </div>
+                </article>
+
+                <!-- Integrante 4: Javier Torres -->
+                <article class="tarjeta-equipo">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=faces"
+                         alt="Javier Torres - Técnico en Frenos, Suspensión y Alineación"
+                         onerror="this.src='https://placehold.co/400x400/1e293b/ffffff?text=JT'">
+                    <div class="detalle-miembro">
+                        <h3>Javier Torres</h3>
+                        <span class="cargo">Técnico en Frenos, Suspensión y Alineación</span>
+                        <p>Se encarga del mantenimiento preventivo, cambio de frenos, amortiguadores, dirección y balanceo de neumáticos.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         5. SECCIÓN DE CONTACTO
+         ====================================================================== -->
+    <section id="contacto" class="seccion-blanca">
+        <div class="contenedor">
+            <div class="encabezado-seccion">
+                <h2>Contacto y Ubicación</h2>
+                <p>Visítanos o reserva tu espacio para atención rápida sin esperas.</p>
+            </div>
+
+            <div class="caja-contacto">
+                <div class="dato-contacto">
+                    <h3>📍 Dirección</h3>
+                    <p>Av. Los Mecánicos #450, Zona Industrial</p>
+                </div>
+
+                <div class="dato-contacto">
+                    <h3>🕒 Horario de Atención</h3>
+                    <p>Lunes a Viernes: 8:00 AM - 6:00 PM<br>Sábados: 8:30 AM - 2:00 PM</p>
+                </div>
+
+                <div class="dato-contacto">
+                    <h3>📞 Teléfono y Citas</h3>
+                    <p>Tel: (555) 234-8910<br>WhatsApp: +52 555 987 6543</p>
+                    <br>
+                    <button type="button" class="boton" onclick="document.getElementById('mensaje-cita').style.display='block'">
+                        Solicitar Cita
+                    </button>
+                    <div id="mensaje-cita" class="aviso-cita">
+                        ✅ ¡Solicitud recibida! Sofía Navarro te contactará a la brevedad para confirmar tu horario.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         6. PIE DE PÁGINA (<footer>)
+         ====================================================================== -->
+    <footer>
+        <div class="contenedor">
+            <p><strong>Automotriz Mimi</strong> &copy; 2026 - Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
